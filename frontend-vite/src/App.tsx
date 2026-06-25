@@ -1,10 +1,7 @@
-import { SocketProvider } from '#/context/SocketContext'
-import { useChannel } from '#/hooks/useChannel'
-import { createFileRoute } from '@tanstack/react-router'
-import { useCallback, useState } from 'react'
-import type { ChangeEvent } from 'react'
+import { useCallback, useState, type ChangeEvent } from 'react'
 
-export const Route = createFileRoute('/')({ component: Home })
+import './App.css'
+import { useChannel } from './hooks/useChannel'
 
 type Message = {
   body: string
@@ -49,10 +46,15 @@ function Chat() {
   )
 }
 
-function Home() {
+function App() {
   return (
-    <SocketProvider>
-    <Chat/>
-  </SocketProvider>
+    <>
+        
+      <Chat></Chat>
+      <div className="ticks"></div>
+      <section id="spacer"></section>
+    </>
   )
 }
+
+export default App

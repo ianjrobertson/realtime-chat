@@ -1,8 +1,7 @@
-defmodule BackendWeb.RoomChannels do
+defmodule BackendWeb.RoomChannel do
   use Phoenix.Channel
 
   def join("room:lobby", _message, socket) do
-    IO.puts("Joined lobby")
     {:ok, socket}
   end
 
@@ -11,7 +10,6 @@ defmodule BackendWeb.RoomChannels do
   end
 
   def handle_in("new_msg", %{"body" => body}, socket) do
-    IO.puts("new_msg", %{body: body})
     broadcast!(socket, "new_msg", %{body: body})
     {:noreply, socket}
   end

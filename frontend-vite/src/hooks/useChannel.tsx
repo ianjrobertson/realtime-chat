@@ -1,10 +1,10 @@
-import { useSocket } from '#/context/SocketContext'
+import { useSocket } from '../context/SocketContext'
 import type { Channel } from 'phoenix'
 import { useEffect, useRef } from 'react'
 
 export function useChannel(
   topicName: string,
-  eventCallback: (response?: any) => void | Promise<void>,
+  eventCallback: (response?: never) => void | Promise<void>,
 ) {
   const { socket } = useSocket()
   const channel = useRef<Channel | null>(null)
@@ -13,8 +13,7 @@ export function useChannel(
     if (!socket) return
 
     const chan = socket.channel(topicName, {})
-    console.log('setting channel')
-    channel.current = chan;
+    channel.current = chan
 
     chan.on('new_msg', eventCallback)
 
@@ -29,7 +28,7 @@ export function useChannel(
     return () => {
       chan.leave()
     }
-  }, [socket, topicName])
+  }, [socket, topicName, eventCallback])
 
   const pushMessage = (event: string, payload: object) => {
     if (channel.current) {

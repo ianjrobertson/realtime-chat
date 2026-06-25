@@ -11,7 +11,6 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
-import { SocketProvider } from '#/context/SocketContext'
 
 interface MyRouterContext {
   queryClient: QueryClient
