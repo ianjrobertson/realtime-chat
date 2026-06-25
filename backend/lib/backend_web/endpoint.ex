@@ -60,4 +60,8 @@ defmodule BackendWeb.Endpoint do
 
     conn
   end
+
+  socket "/socket", BackendWeb.UserSocket,
+    websocket: true,
+    longpoll: false
 end
